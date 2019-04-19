@@ -1,5 +1,7 @@
 <?php
 namespace XiangYu2038\Wish;
+use common\core\ActiveQuery;
+use Yii;
 trait XyActiveRecord  {
     public $hasRelation;
     public $add=[];
@@ -112,5 +114,11 @@ trait XyActiveRecord  {
         }, $str);
         return $str;
     }
+
+    public static function finds(){
+        return Yii::createObject(ActiveQuery::className(), [get_called_class()]);
+    }
+
+
 
 }
