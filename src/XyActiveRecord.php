@@ -1,5 +1,5 @@
 <?php
-namespace common\helpers;
+namespace XiangYu2038\Wish;
 trait XyActiveRecord  {
     public $hasRelation;
     public $add=[];

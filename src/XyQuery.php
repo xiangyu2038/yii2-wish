@@ -5,7 +5,7 @@
  *
  */
 
-namespace common\helpers;
+namespace XiangYu2038\Wish;
 
 use yii\base\InvalidConfigException;
 use yii\db\ActiveQuery;
