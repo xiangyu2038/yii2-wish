@@ -114,7 +114,11 @@ trait XyActiveRecord  {
         }, $str);
         return $str;
     }
-
+    
+    /**
+     * @inheritdoc
+     * @return ActiveQuery the newly created [[ActiveQuery]] instance.
+     */
     public static function finds(){
         return Yii::createObject(ActiveQuery::className(), [get_called_class()]);
     }
