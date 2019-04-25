@@ -14,22 +14,45 @@ use yii\db\ActiveRecordInterface;
 
 
 trait XyQuery  {
-    public $hasRelation = true;
-    public $add = [];
-    public $delete = [];
-    public $only = [];
-    public $wish = [];
+    private $hasRelation = true;
+    private $add = [];
+    private $delete = [];
+    private $only = [];
+    private $wish = [];
 
 public function xyWhere($condition, $params = []){
+
     if($condition instanceof \Closure ){
         return  $condition($this);
-     }else{
-        return  $this -> where($condition, $params);
      }
+
+    if($condition instanceof XyConditionInterface){
+        $condition = $condition ->builder();
+        return  $this -> andWhere($condition, $params);//?
+    }
+    return  $this -> andWhere($condition, $params);//?
+
 }
 
+    public function xyOrWhere($condition, $params = []){
+
+        if($condition instanceof \Closure ){
+            return  $condition($this);
+        }
+
+        if($condition instanceof XyConditionInterface){
+            $condition = $condition ->builder();
+            return  $this -> orWhere($condition, $params);//?
+        }
+        return  $this -> orWhere($condition, $params);//?
+    }
 public function xyLikeWhere($condition, $params = []){
-    return  $this -> where(['like',$condition],$params);
+
+    array_walk($condition,function ($value,$key)use($params){
+
+        $this -> andWhere(['like',$key,$value],$params);
+    });
+    return  $this;
 }
 
 public function xyWith($par){

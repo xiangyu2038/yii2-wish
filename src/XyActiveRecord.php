@@ -114,7 +114,7 @@ trait XyActiveRecord  {
         }, $str);
         return $str;
     }
-    
+
     /**
      * @inheritdoc
      * @return ActiveQuery the newly created [[ActiveQuery]] instance.
