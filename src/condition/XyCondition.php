@@ -45,7 +45,8 @@ class XyCondition implements XyConditionInterface
                 continue;
             }
            if($this ->fliter){
-                if($v){
+               ///TODO 不能过滤掉0
+                if(!$this -> isEmpty($v)){
                     $condition[][$key] =$v;
                 }
            }else{
@@ -57,5 +58,10 @@ class XyCondition implements XyConditionInterface
         }
         array_unshift($condition,$this -> type);
         return $condition;
+    }
+
+    protected function isEmpty($value)
+    {
+        return $value === '' || $value === [] || $value === null || is_string($value) && trim($value) === '';
     }
 }

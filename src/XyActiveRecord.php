@@ -91,6 +91,9 @@ trait XyActiveRecord  {
             $res = array_merge($res, $this->extraFields());
         }
         if ($add_row = $this->addRow()) {
+            array_walk($add_row,function (&$value){
+                $value = $this -> convertUnderline($value);
+            });
             $res = array_merge($res, $add_row);
         }
 
