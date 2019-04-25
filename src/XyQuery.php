@@ -7,6 +7,7 @@
 
 namespace XiangYu2038\Wish;
 
+use XiangYu2038\Wish\Condition\XyConditionInterface;
 use yii\base\InvalidConfigException;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecordInterface;
@@ -28,7 +29,10 @@ public function xyWhere($condition, $params = []){
 
     if($condition instanceof XyConditionInterface){
         $condition = $condition ->builder();
-        return  $this -> andWhere($condition, $params);//?
+        if ($condition !== []) {
+            $this -> andWhere($condition, $params);//?
+        }
+        return  $this; //?
     }
     return  $this -> andWhere($condition, $params);//?
 
