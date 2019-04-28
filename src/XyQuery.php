@@ -15,11 +15,11 @@ use yii\db\ActiveRecordInterface;
 
 
 trait XyQuery  {
-    private $hasRelation = true;
-    private $add = [];
-    private $delete = [];
-    private $only = [];
-    private $wish = [];
+    public $hasRelation = true;
+    public $add = [];
+    public $delete = [];
+    public $only = [];
+    public $wish = [];
 
 public function xyWhere($condition, $params = []){
 
@@ -144,6 +144,7 @@ public function xyWith($par){
         return $this;
     }
     public function xyWishModel($model){
+
         $model -> add = $this -> add;
         $model -> delete = $this -> delete;
         $model -> only = $this -> only;

@@ -118,6 +118,13 @@ trait XyActiveRecord  {
         return $str;
     }
 
+    public function xySet($sets){
+        array_walk($sets,function ($set){
+            $f = 'set' . ucfirst($this->convertUnderline($set));
+            $this -> $set = $this -> $f();
+        });
+    }
+
     /**
      * @inheritdoc
      * @return ActiveQuery the newly created [[ActiveQuery]] instance.

@@ -8,6 +8,7 @@ class XyCondition implements XyConditionInterface
     private $expressions = [];
     private $type;
     private $fliter = true;
+    private $fliter_flag = 'all';
     public function __construct($expressions)
     {
         $this->expressions = $expressions;
@@ -36,6 +37,14 @@ class XyCondition implements XyConditionInterface
     public function getFilter(){
        return  $this->fliter;
     }
+
+    public function setFilterFlag($filter=true){
+        $this->fliter_flag = $filter;
+        return $this;
+    }
+    public function getFilterFlag(){
+        return  $this->fliter_flag;
+    }
     public function builder(){
         $expression =  $this -> getExpressions();
         $condition = [];
@@ -62,6 +71,6 @@ class XyCondition implements XyConditionInterface
 
     protected function isEmpty($value)
     {
-        return $value === '' || $value === [] || $value === null || is_string($value) && trim($value) === '';
+        return $value === $this ->fliter_flag||$value === '' || $value === [] || $value === null || is_string($value) && trim($value) === '';
     }
 }
